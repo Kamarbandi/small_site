@@ -1,5 +1,6 @@
 package com.example.website.config;
 
+import com.example.website.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig {
     @Autowired
-    private DataSource dataSource;
+    private UserService userService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,12 +37,7 @@ public class WebSecurityConfig {
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        System.out.println("Your function is being executed");
-
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password, active from usr where username=?")
-                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join user_role ur on u.id = ur.user_id where u.username=?");
+        auth.userDetailsService(userService)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 }
