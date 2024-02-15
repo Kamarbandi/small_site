@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <body>
+
     <div>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
     </div>
+    <br>
 
     <div>
         <form th:action="@{/main}" method="post">
@@ -14,6 +16,7 @@
             <button type="submit">Add</button>
         </form>
     </div>
+    <br>
 
     <div>
         <form method="post" th:action="@{/filter}">
@@ -21,7 +24,7 @@
             <button type="submit">Find</button>
         </form>
     </div>
-
+    <br>
 
     <div th:each="message : ${messages}">
         <b th:text="${message.id}"></b>
