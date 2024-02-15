@@ -14,6 +14,10 @@ public class Message {
     private String text;
     private String tag;
 
+    public Integer getId() {
+        return id;
+    }
+
     public Message() {
     }
 
