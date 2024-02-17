@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class MainController {
     @Autowired
@@ -29,13 +28,13 @@ public class MainController {
     ) {
         Iterable<Message> messages = messageRepo.findAll();
 
-        if(filter != null && !filter.isEmpty()) {
+        if (filter != null && !filter.isEmpty()) {
             messages = messageRepo.findByTag(filter);
         } else {
             messages = messageRepo.findAll();
         }
 
-        model.addAttribute("messages",  messages);
+        model.addAttribute("messages", messages);
         return "main";
     }
 
@@ -52,7 +51,7 @@ public class MainController {
 
         Iterable<Message> messages = messageRepo.findAll();
 
-        model.addAttribute("messages",  messages);
+        model.addAttribute("messages", messages);
 
         return "main";
     }

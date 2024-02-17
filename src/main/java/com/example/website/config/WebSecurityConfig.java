@@ -36,7 +36,6 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)

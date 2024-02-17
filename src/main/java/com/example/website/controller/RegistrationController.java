@@ -26,7 +26,7 @@ public class RegistrationController {
     public String addUser(User user, Model model) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
 
-        if(userFromDb != null) {
+        if (userFromDb != null) {
             model.addAttribute("message", "User exist!");
             return "registration";
         }
