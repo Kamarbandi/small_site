@@ -3,6 +3,11 @@
 <body>
 
     <div>
+        <a th:href="@{/user}">User list</a>
+    </div>
+    <br>
+
+    <div>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Sign Out"/>
         </form>
