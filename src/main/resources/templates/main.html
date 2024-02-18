@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/static/style.css}">
+</head>
 <body>
 
     <div>
@@ -15,9 +18,10 @@
     <br>
 
     <div>
-        <form th:action="@{/main}" method="post">
+        <form th:action="@{/main}" method="post" enctype="multipart/form-data">
             <input type="text" name="text" placeholder="Write message">
             <input type="text" name="tag" placeholder="Write Tag">
+            <input type="file" name="file">
             <button type="submit">Add</button>
         </form>
     </div>
@@ -25,7 +29,7 @@
 
     <div>
         <form method="get" th:action="@{/main}">
-            <input type="text" name="filter" placeholder="any tag">
+            <input type="text" name="filter" placeholder="any tag" >
             <button type="submit">Find</button>
         </form>
     </div>
@@ -36,6 +40,9 @@
         <span th:text="${message.text}"></span>
         <i th:text="${message.tag}"></i>
         <strong th:text="${message.authorName}"></strong>
+        <div th:if="${message.filename}">
+            <img width="300" th:src="@{${'img/' + message.filename}}">
+        </div>
     </div>
 
 </body>
