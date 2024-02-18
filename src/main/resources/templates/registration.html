@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<head>
-  <title>Spring Security Example </title>
+<head th:replace="fragments :: html_head ">
 </head>
 <body>
-Add new User
+<div class="container">
+    <nav th:replace="fragments :: navbar">
+    </nav>
 
-<div th:if="${message}">
-  <span th:text="${message}"></span>
+    <h3>Registration</h3>
+
+    <div th:if="${message}">
+        <span th:text="${message}" class="link-danger"></span>
+    </div>
+
+    <form th:action="@{/registration}" method="post">
+        <div><label> User Name : <input type="text" name="username"/> </label></div>
+        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="add User"/></div>
+    </form>
 </div>
-
-<form th:action="@{/registration}" method="post">
-  <div><label> User Name : <input type="text" name="username"/> </label></div>
-  <div><label> Password: <input type="password" name="password"/> </label></div>
-  <div><input type="submit" value="add User"/></div>
-</form>
 </body>
 </html>

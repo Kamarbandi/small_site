@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <link rel="stylesheet" th:href="@{/static/style.css}">
+<head th:replace="fragments :: html_head ">
 </head>
 <body>
+<div class="container">
 
-    <div>
-        <a th:href="@{/user}">User list</a>
-    </div>
-    <br>
-
-    <div>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-    </div>
-    <br>
+    <nav th:replace="fragments :: navbar">
+    </nav>
 
     <div>
         <form th:action="@{/main}" method="post" enctype="multipart/form-data">
@@ -29,21 +20,34 @@
 
     <div>
         <form method="get" th:action="@{/main}">
-            <input type="text" name="filter" placeholder="any tag" >
+            <input type="text" name="filter" placeholder="any tag">
             <button type="submit">Find</button>
         </form>
     </div>
     <br>
 
-    <div th:each="message : ${messages}">
-        <b th:text="${message.id}"></b>
-        <span th:text="${message.text}"></span>
-        <i th:text="${message.tag}"></i>
-        <strong th:text="${message.authorName}"></strong>
-        <div th:if="${message.filename}">
-            <img width="300" th:src="@{${'img/' + message.filename}}">
+    <div class="container text-center">
+        <div class="row row-cols-4">
+            <div th:each="message : ${messages}" class="col">
+                <figure class="figure">
+                    <div th:if="${message.filename}">
+                        <img th:src="@{${'img/' + message.filename}}" class="figure-img img-fluid rounded" alt="...">
+                    </div>
+
+                    <figcaption class="figure-caption">
+                        <b th:text="${message.id}"></b>
+                        <span th:text="${message.text}"></span>
+                        <i th:text="${message.tag}"></i>
+                        <strong th:text="${message.authorName}"></strong>
+                    </figcaption>
+                </figure>
+            </div>
         </div>
     </div>
 
+</div>
+
+<div th:replace="fragments :: scripts">
+</div>
 </body>
 </html>

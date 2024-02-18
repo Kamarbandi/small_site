@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments :: html_head ">
+</head>
 <body>
-    <h3>User List</h3>
+<div class="container">
+    <nav th:replace="fragments :: navbar">
+    </nav>
 
-    <table>
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Role</th>
-                <th></th>
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="users: ${users}">
-                <td th:text="${users.username}"></td>
-                <td>
-                    <span th:each="role : ${users.roles}" th:text="${role}">,</span>
-                </td>
-                <td><a th:href="@{'/user/' + ${users.id}}">edit</a></td>
-            </tr>
+        <tr th:each="users: ${users}">
+            <td th:text="${users.username}"></td>
+            <td>
+                <span th:each="role : ${users.roles}" th:text="${role}">,</span>
+            </td>
+            <td>
+                <a th:href="@{'/user/' + ${users.id}}">edit</a>
+            </td>
+        </tr>
         </tbody>
     </table>
-
+</div>
 </body>
 </html>
