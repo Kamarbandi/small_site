@@ -17,11 +17,28 @@
 
     <h1>Login page</h1>
 
-    <form th:action="@{/login}" method="post">
-      <div><label> User Name : <input type="text" name="username"/> </label></div>
-      <div><label> Password: <input type="password" name="password"/> </label></div>
-      <div><input type="submit" value="Sign In"/></div>
-    </form>
+    <div class="col-3">
+      <form th:action="@{/login}" method="post">
+
+        <div class="mb-3">
+          <label for="username" class="form-label">User Name:</label>
+          <input name="username" type="text" class="form-control" id="username" placeholder="Alex">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input name="password" type="text" class="form-control" id="password">
+        </div>
+
+        <div class="mb-3">
+          <input class="btn btn-success" type="submit" value="Login"/>
+        </div>
+<!--        <div><label> User Name : <input type="text" name="username"/> </label></div>-->
+<!--        <div><label> Password: <input type="password" name="password"/> </label></div>-->
+<!--        <div><input type="submit" value="Sign In"/></div>-->
+      </form>
+    </div>
+
   </div>
 </body>
 </html>

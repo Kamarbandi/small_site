@@ -13,11 +13,26 @@
         <span th:text="${message}" class="link-danger"></span>
     </div>
 
-    <form th:action="@{/registration}" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="add User"/></div>
-    </form>
+   <div class="row">
+       <div class="col-lg-4">
+           <form th:action="@{/registration}" method="post">
+               <div class="mb-3">
+                   <label for="username" class="form-label">User Name:</label>
+                   <input name="username" type="text" class="form-control" id="username" placeholder="Alex">
+               </div>
+
+               <div class="mb-3">
+                   <label for="password" class="form-label">Password:</label>
+                   <input name="password" type="text" class="form-control" id="password">
+               </div>
+
+               <div class="mb-3">
+                   <input class="btn btn-success" type="submit" value="Sign Up"/>
+               </div>
+           </form>
+       </div>
+   </div>
+
 </div>
 </body>
 </html>
