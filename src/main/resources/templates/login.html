@@ -17,6 +17,10 @@
 
     <h1>Login page</h1>
 
+    <div th:if="${message}">
+      <span th:text="${message}" class="link-danger"></span>
+    </div>
+
     <div class="col-3">
       <form th:action="@{/login}" method="post">
 
