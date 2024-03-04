@@ -1,6 +1,8 @@
 package com.example.website.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,10 +15,23 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Username can not be empty!")
     private String username;
+
+    @NotBlank(message = "Password can not be empty!")
     private String password;
+
+//  there is no need to confuse @Transient with a transient, because transient related to multi multitraiding.
+//  @Transient do not work with a BD, do not try save in bd
+    @Transient
+    @NotBlank(message = "Password confirmation can not be empty!")
+    private String password2;
+
     private boolean active;
 
+    @Email(message = "Email is not correct")
+    @NotBlank(message = "Email can not be empty!")
     private String email;
     private String activationCode;
 
@@ -108,5 +123,13 @@ public class User implements UserDetails {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 }

@@ -1,6 +1,8 @@
 package com.example.website.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class Message {
@@ -8,7 +10,12 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Please fill the message")
+    @Length(max = 2048, message = "Message too long (more than 2kB)")
     private String text;
+
+    @NotBlank(message = "Please fill Tag")
+    @Length(max = 255, message = "Tag is too long")
     private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)
