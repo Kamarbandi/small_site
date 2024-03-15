@@ -15,20 +15,48 @@
 
    <div class="row">
        <div class="col-lg-4">
-           <form th:action="@{/registration}" method="post">
+           <form  class="row g-3 needs-validation" novalidate th:action="@{/registration}" method="post">
                <div class="mb-3">
                    <label for="username" class="form-label">User Name:</label>
-                   <input name="username" type="text" class="form-control" id="username" placeholder="Alex">
+                   <input type="text"
+                          th:class="${usernameError} ? 'form-control is-invalid' : 'form-control'"
+                          th:value="${user} ? ${user.username} : ''"
+                          id="username" name="username">
+                   <div class="invalid-feedback" th:text="${usernameError}" >
+                       provide a valid text.
+                   </div>
                </div>
 
                <div class="mb-3">
                    <label for="password" class="form-label">Password:</label>
-                   <input name="password" type="text" class="form-control" id="password">
+
+                   <input type="text"
+                          th:class="${passwordError} ? 'form-control is-invalid' : 'form-control'"
+                          id="password" name="password">
+                   <div class="invalid-feedback" th:text="${passwordError}" >
+                       provide a valid text.
+                   </div>
+               </div>
+
+               <div class="mb-3">
+                   <label for="password2" class="form-label">Password:</label>
+                   <input type="text"
+                          th:class="${password2Error} ? 'form-control is-invalid' : 'form-control'"
+                          id="password2" name="password2">
+                   <div class="invalid-feedback" th:text="${password2Error}" >
+                       provide a valid text.
+                   </div>
                </div>
 
                <div class="mb-3">
                    <label for="email" class="form-label">E-Mail:</label>
-                   <input name="email" type="email" class="form-control" id="email" placeholder="someEmail@some.com">
+                   <input type="text"
+                          th:class="${emailError} ? 'form-control is-invalid' : 'form-control'"
+                          th:value="${user} ? ${user.email} : ''"
+                          id="email" name="email">
+                   <div class="invalid-feedback" th:text="${emailError}" >
+                       provide a valid text.
+                   </div>
                </div>
 
                <div class="mb-3">

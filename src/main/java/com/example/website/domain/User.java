@@ -24,9 +24,6 @@ public class User implements UserDetails {
 
 //  there is no need to confuse @Transient with a transient, because transient related to multi multitraiding.
 //  @Transient do not work with a BD, do not try save in bd
-    @Transient
-    @NotBlank(message = "Password confirmation can not be empty!")
-    private String password2;
 
     private boolean active;
 
@@ -123,13 +120,5 @@ public class User implements UserDetails {
 
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
-    }
-
-    public String getPassword2() {
-        return password2;
-    }
-
-    public void setPassword2(String password2) {
-        this.password2 = password2;
     }
 }
