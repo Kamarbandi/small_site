@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments :: html_head ">
+</head>
+<body>
+<div class="container">
+
+    <nav th:replace="fragments :: navbar">
+    </nav>
+    <h2>Add Message</h2>
+
+    <div>
+        <form class="row g-3 needs-validation" novalidate th:action="@{${'/user-messages/' + user.getId}}" method="post" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label for="text" class="form-label">Write message</label>
+                <input type="text"
+                       th:class="${textError} ? 'form-control is-invalid' : 'form-control'"
+                       th:value="${message} ? ${message.text} : ''"
+                       id="text" name="text">
+                <div class="invalid-feedback" th:text="${textError}" >
+                    Please provide a valid city.
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="tag" class="form-label">Write Tag</label>
+                <input type="text" name="tag" id="tag"
+                       th:class="${tagError} ? 'form-control is-invalid' : 'form-control'"
+                       th:value="${message} ? ${message.tag} : ''"
+                >
+
+                <div class="invalid-feedback" th:text="${tagError}" >
+                    Please provide a valid city.
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <input name="file" type="file" class="form-control" id="file">
+                <label class="input-group-text" for="file">Upload</label>
+            </div>
+
+            <input name="id" type="hidden" th:value="${message} ? ${message.id} : ''">
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+    <br>
+
+    <br>
+    <div th:insert="parts/messageList"></div>
+</div>
+
+<div th:replace="fragments :: scripts">
+</div>
+</body>
+</html>
