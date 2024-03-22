@@ -7,11 +7,11 @@
 
     <nav th:replace="fragments :: navbar">
     </nav>
+    <h2>Edit Message</h2>
 
     <div>
         <form class="row g-3 needs-validation" novalidate th:action="@{/main}" method="post" enctype="multipart/form-data">
             <div class="col-md-6">
-
                 <label for="text" class="form-label">Write message</label>
                 <input type="text"
                        th:class="${textError} ? 'form-control is-invalid' : 'form-control'"
@@ -38,18 +38,13 @@
                 <input name="file" type="file" class="form-control" id="file">
                 <label class="input-group-text" for="file">Upload</label>
             </div>
+            <input  type="hidden" name="id" th:value="${message} ? ${message.id} : ''">
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Save Message</button>
         </form>
     </div>
     <br>
 
-    <div>
-        <form method="get" th:action="@{/main}">
-            <input type="text" name="filter" placeholder="any tag">
-            <button type="submit">Find</button>
-        </form>
-    </div>
     <br>
     <div th:insert="parts/messageList"></div>
 </div>
