@@ -6,6 +6,8 @@ import com.example.website.repos.MessageRepo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -36,7 +38,21 @@ public class MainController {
 
     @GetMapping("/")
     public String greeting(Model model) {
-        return "greeting";
+        if(getPrincipal() != null) {
+            model.addAttribute("user", getPrincipal());
+            return "greeting";
+        }
+
+        return "login";
+    }
+
+    private User getPrincipal() {
+        User user = null;
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal() instanceof User) {
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+
+        return user;
     }
 
     @GetMapping("/main")
@@ -112,6 +128,14 @@ public class MainController {
             @RequestParam(required = false) Message message
     ) {
         Set<Message> messages = user.getMessage();
+
+        model.addAttribute("userChannel", user);
+
+        model.addAttribute("subscriptionsCount", user.getSubscriptions().size());
+        model.addAttribute("subscribersCount", user.getSubscribers().size());
+
+        model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
+
 
         model.addAttribute("messages", messages);
         model.addAttribute("message", message);

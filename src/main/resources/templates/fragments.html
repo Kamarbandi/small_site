@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head th:fragment="html_head">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!--    <link rel="stylesheet" th:href="@{/static/style.css}">-->
@@ -10,8 +11,6 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-
-
 
 <!-- Use the variable somewhere in the code -->
 
@@ -50,11 +49,10 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true" th:inline="text">Hello <span th:remove="tag"
-                                                                                                   sec:authentication="name"> thymeleaf</span>!</a>
+                    <a class="nav-link disabled" aria-disabled="true" th:inline="text">Hello <span th:text="${user} ? ${user.username} : 'Guest'"> thymeleaf</span>!</a>
                 </li>
             </ul>
-            <form class="d-flex" th:action="@{/logout}" method="post">
+            <form sec:authorize="isAuthenticated()" class="d-flex" th:action="@{/logout}" method="post">
                 <button class="btn btn-outline-success" type="submit">Logout</button>
             </form>
         </div>

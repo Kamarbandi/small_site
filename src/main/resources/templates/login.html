@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 <head th:replace="fragments :: html_head">
     <title>Spring Security Example </title>
 </head>
@@ -16,6 +18,10 @@
     </div>
 
     <h1>Login page</h1>
+
+    <div class="" sec:authorize="isAuthenticated()">
+        Hello isAuthenticated person
+    </div>
 
     <div th:if="${message}">
       <span th:text="${message}" class="link-danger"></span>

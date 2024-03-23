@@ -9,6 +9,44 @@
     </nav>
     <h2>Add Message</h2>
 
+    <div th:if="!${isCurrentUser}">
+        <div th:if="${isSubscriber}">
+            <a class="btn btn-info" th:href="@{'/user/unsubscribe/' + ${userChannel.id}}" th:text="Unsubscribe"></a>
+        </div>
+
+        <div th:unless="${isSubscriber}">
+            <a class="btn btn-info" th:href="@{'/user/subscribe/' + ${userChannel.id}}" th:text="Subscribe"></a>
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Subscriptions</div>
+                        <h3 class="card-text">
+                            <a th:text="${subscriptionsCount}" th:href="@{'/user/subscriptions/' + ${userChannel.id} + '/list'}"></a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">Subscribers</div>
+                        <h3 class="card-text">
+                            <a th:text="${subscribersCount}" th:href="@{'/user/subscribers/' + ${userChannel.id} + '/list'}"></a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 th:text="${userChannel.username}"></h3>
+
     <div>
         <form class="row g-3 needs-validation" novalidate th:action="@{${'/user-messages/' + user.getId}}" method="post" enctype="multipart/form-data">
             <div class="col-md-6">

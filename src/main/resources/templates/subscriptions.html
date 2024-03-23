@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments :: html_head ">
+</head>
+<body>
+<div class="container">
+
+  <nav th:replace="fragments :: navbar">
+  </nav>
+
+  <h3 th:text="${userChannel.username}"></h3>
+
+  <div th:text="${type}"></div>
+  <ul class="list-group" th:each="user: ${users}">
+     <li class="list-group-item">
+       <a th:href="@{'/user-messages/' + ${user.id}}" th:text="${user.getUsername}"></a>
+     </li>
+  </ul>
+
+</div>
+
+<div th:replace="fragments :: scripts">
+</div>
+</body>
+</html>
