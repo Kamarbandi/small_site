@@ -9,14 +9,14 @@
     </nav>
 
     <div>
-        <form class="row g-3 needs-validation" novalidate th:action="@{/main}" method="post" enctype="multipart/form-data">
+        <form class="row g-3 needs-validation"  th:action="@{/main}" method="post" enctype="multipart/form-data">
             <div class="col-md-6">
 
                 <label for="text" class="form-label">Write message</label>
                 <input type="text"
                        th:class="${textError} ? 'form-control is-invalid' : 'form-control'"
                        th:value="${message} ? ${message.text} : ''"
-                       id="text" name="text">
+                       id="text" name="text"/>
                 <div class="invalid-feedback" th:text="${textError}" >
                     Please provide a valid city.
                 </div>
@@ -27,7 +27,7 @@
                 <input type="text" name="tag" id="tag"
                        th:class="${tagError} ? 'form-control is-invalid' : 'form-control'"
                        th:value="${message} ? ${message.tag} : ''"
-                >
+                />
 
                 <div class="invalid-feedback" th:text="${tagError}" >
                     Please provide a valid city.
@@ -35,22 +35,22 @@
             </div>
 
             <div class="input-group mb-3">
-                <input name="file" type="file" class="form-control" id="file">
+                <input name="file" type="file" class="form-control" id="file"/>
                 <label class="input-group-text" for="file">Upload</label>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    <br>
+    <br/>
 
     <div>
         <form method="get" th:action="@{/main}">
-            <input type="text" name="filter" placeholder="any tag">
+            <input type="text" name="filter" placeholder="any tag"/>
             <button type="submit">Find</button>
         </form>
     </div>
-    <br>
+    <br/>
     <div th:insert="parts/messageList"></div>
 </div>
 

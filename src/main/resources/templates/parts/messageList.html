@@ -1,24 +1,19 @@
-<div th:fragment="messageList" class="container text-center">
-    <div class="row row-cols-4">
-        <div th:each="message : ${messages}" class="col">
-            <figure class="figure">
-                <div th:if="${message.filename}">
-                    <img th:src="@{${'/img/' + message.filename}}" class="figure-img img-fluid rounded" alt="...">
-                </div>
+<div th:fragment="messageList" class="container center">
+    <div class="row" id="message-list">
+            <div th:each="message : ${messages}"  class="col">
+                <div class="card my-3" style="width: 18rem;">
+                    <img th:if="${message.filename}" th:src="@{${'/img/' + message.filename}}" class="card-img-top" alt="..."/>
 
-                <figcaption class="figure-caption">
-                    <b th:text="${message.id}"></b>
-                    <span th:text="${message.text}"></span>
-                    <i th:text="${message.tag}"></i>
-                    <br>
+                    <div class="m-2">
+                        <span th:text="${message.text}"></span><br/>
+                        <i th:text="'#' + ${message.tag}"></i>
+                    </div>
 
-                    <div>
+                    <div class="card-footer text-muted">
                         <a th:href="@{${'/user-messages/' + message.author.id}}" th:text="${message.authorName}"></a>
                         <a class="btn btn-primary" th:href="@{${'/user-messages/' + message.author.id + '?message=' + message.id}}" th:text="Edit"></a>
                     </div>
-
-                </figcaption>
-            </figure>
-        </div>
+                </div>
+            </div>
     </div>
 </div>
