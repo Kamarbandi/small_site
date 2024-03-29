@@ -1,6 +1,9 @@
 <div th:fragment="messageList" class="container center">
+
+    <div th:insert="parts/pager"></div>
+
     <div class="row" id="message-list">
-            <div th:each="message : ${messages}"  class="col">
+            <div th:each="message : ${page.content}"  class="col">
                 <div class="card my-3" style="width: 18rem;" th:data-id="${message.id}">
                     <img th:if="${message.filename}" th:src="@{${'/img/' + message.filename}}" class="card-img-top" alt="..."/>
 
