@@ -1,26 +1,28 @@
-<div>
-<!--    can be add '...' in pagination, todo this one in future-->
-    <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link">Pages</a>
-        </li>
+<div class="container mt-3">
+    <div class="row">
+        <!--    can be add '...' in pagination, todo this one in future-->
+        <ul class="pagination col justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link">Pages</a>
+            </li>
 
-          <li th:each="p : ${#numbers.sequence(1, page.getTotalPages)}"
-              th:class="${(p - 1) == page.getNumber} ? 'page-item active' : 'page-item'"  th:aria-current="${(p - 1) == page.getNumber} ? 'page' : ''">
-            <a class="page-link" th:href="${(p - 1) == page.getNumber} ? '#' : ${url} + '?page=' + ${p - 1} +  '&size=' + ${page.getSize}" th:text="${p}"></a>
-          </li>
+            <li th:each="p : ${#numbers.sequence(1, page.getTotalPages)}"
+                th:class="${(p - 1) == page.getNumber} ? 'page-item active' : 'page-item'"  th:aria-current="${(p - 1) == page.getNumber} ? 'page' : ''">
+                <a class="page-link" th:href="${(p - 1) == page.getNumber} ? '#' : ${url} + '?page=' + ${p - 1} +  '&size=' + ${page.getSize}" th:text="${p}"></a>
+            </li>
 
-      </ul>
+        </ul>
 
-    <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link">Item per page</a>
-        </li>
-        <li th:each="c :${pageItems}"
-            th:class="${c == page.getSize} ? 'page-item active' : 'page-item'"  th:aria-current="${c == page.getSize} ? 'page' : ''">
-            <a class="page-link" th:href="${c == page.getSize} ? '#' : ${url} + '?page=' + ${page.getNumber} + '&size=' + ${c}" th:text="${c}"></a>
-        </li>
-    </ul>
+        <ul class="pagination col justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link">Item per page</a>
+            </li>
+            <li th:each="c :${pageItems}"
+                th:class="${c == page.getSize} ? 'page-item active' : 'page-item'"  th:aria-current="${c == page.getSize} ? 'page' : ''">
+                <a class="page-link" th:href="${c == page.getSize} ? '#' : ${url} + '?page=' + ${page.getNumber} + '&size=' + ${c}" th:text="${c}"></a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 

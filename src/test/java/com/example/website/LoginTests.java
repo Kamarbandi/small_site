@@ -1,6 +1,6 @@
 package com.example.website;
 
-import com.example.website.controller.MainController;
+import com.example.website.controller.MessageController;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ class LoginTests {
     private MockMvc mockMvc;
 
     @Autowired
-    private MainController controller;
+    private MessageController controller;
 
     @Test
     public void contextLoads() throws Exception {

@@ -12,9 +12,15 @@
                         <i th:text="'#' + ${message.tag}"></i>
                     </div>
 
-                    <div class="card-footer text-muted">
-                        <a th:href="@{${'/user-messages/' + message.author.id}}" th:text="${message.authorName}"></a>
-                        <a class="btn btn-primary" th:href="@{${'/user-messages/' + message.author.id + '?message=' + message.id}}" th:text="Edit"></a>
+                    <div class="card-footer text-muted container">
+                        <div class="row">
+                            <a class="col align-self-center" th:href="@{${'/user-messages/' + message.author.id}}" th:text="${message.authorName}"></a>
+                            <a class="col align-self-center" href="#" >
+                                <i th:class="${message.meLiked} ? 'fas fa-heart' : 'far fa-heart'"></i>
+                                <span th:text="${message.likes}"></span>
+                            </a>
+                            <a class="col btn btn-primary" th:href="@{${'/user-messages/' + message.author.id + '?message=' + message.id}}" th:text="Edit"></a>
+                        </div>
                     </div>
                 </div>
             </div>
