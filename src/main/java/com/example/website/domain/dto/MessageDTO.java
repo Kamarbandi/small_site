@@ -18,6 +18,7 @@ public class MessageDTO {
         this.text = message.getText();
         this.tag = message.getTag();
         this.author = message.getAuthor();
+        this.filename = message.getFilename();
         this.likes = likes;
         this.meLiked = meLiked;
     }

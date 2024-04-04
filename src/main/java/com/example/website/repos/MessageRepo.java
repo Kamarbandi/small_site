@@ -8,10 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface MessageRepo extends CrudRepository<Message, Long> {
-    @Query("select new com.example.sweater.domain.dto.MessageDto(" +
+
+    @Query("select new com.example.website.domain.dto.MessageDTO(" +
             "   m, " +
             "   count(ml), " +
             "   sum(case when ml = :user then 1 else 0 end) > 0" +
@@ -20,7 +22,7 @@ public interface MessageRepo extends CrudRepository<Message, Long> {
             "group by m")
     Page<MessageDTO> findAll(Pageable pageable, @Param("user") User user);
 
-    @Query("select new com.example.sweater.domain.dto.MessageDto(" +
+    @Query("select new com.example.website.domain.dto.MessageDTO(" +
             "   m, " +
             "   count(ml), " +
             "   sum(case when ml = :user then 1 else 0 end) > 0" +
@@ -30,7 +32,7 @@ public interface MessageRepo extends CrudRepository<Message, Long> {
             "group by m")
     Page<MessageDTO> findByTag(@Param("tag") String tag, Pageable pageable, @Param("user") User user);
 
-    @Query("select new com.example.sweater.domain.dto.MessageDto(" +
+    @Query("select new com.example.website.domain.dto.MessageDTO(" +
             "   m, " +
             "   count(ml), " +
             "   sum(case when ml = :user then 1 else 0 end) > 0" +
